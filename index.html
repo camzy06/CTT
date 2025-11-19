@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Open Me</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #4aa3ff; /* blue background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Heart background */
+  .heart {
+    position: absolute;
+    width: 300px;
+    height: 270px;
+    background: red;
+    transform: rotate(-45deg);
+    top: 50%;
+    left: 50%;
+    opacity: 0.25;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .heart:before,
+  .heart:after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: red;
+    border-radius: 50%;
+  }
+
+  .heart:before {
+    top: -150px;
+    left: 0;
+  }
+
+  .heart:after {
+    left: 150px;
+    top: 0;
+  }
+
+  /* CT Letters */
+  .heart-text {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    font-weight: bold;
+    color: white;
+    opacity: 0.7;
+  }
+
+  /* Gift box */
+  #box {
+    width: 170px;
+    height: 170px;
+    background: url('https://i.imgur.com/6aP6Xho.png') no-repeat center/contain;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    z-index: 5;
+    position: relative;
+  }
+
+  #box.opened {
+    transform: scale(0.8);
+  }
+
+  /* Hidden message */
+  #message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: white;
+    padding: 25px 35px;
+    border-radius: 12px;
+    font-size: 22px;
+    text-align: center;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    opacity: 0;
+    transition: 0.5s ease;
+    z-index: 10;
+  }
+
+  #box.opened + #message {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="heart"></div>
+<div class="heart-text">CT</div>
+
+<div id="box"></div>
+
+<div id="message">Can we talk please…<br>I miss you.</div>
+
+<script>
+  const box = document.getElementById('box');
+  box.addEventListener('click', () => {
+    box.classList.toggle('opened');
+  });
+</script>
+
+</body>
+</html>
